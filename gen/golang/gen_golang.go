@@ -69,7 +69,7 @@ func genRpcImpl(schemas *mtproto_parser.MTProtoSchemas, outFilePath string) {
 			var buf bytes.Buffer
 			t := template.Must(template.ParseFiles("./gen/tpl/service_impl.go.tpl"))
 			t.Execute(&buf, v)
-			if err := os.MkdirAll(fmt.Sprintf("%s/out/rpc/%s/", outFilePath, k), 0666); err != nil {
+			if err := os.MkdirAll(fmt.Sprintf("%s/out/rpc/%s/", outFilePath, k), 0750); err != nil {
 				glog.Fatal("genRpcImpl error: ", err)
 			}
 			err := os.WriteFile(fmt.Sprintf("%s/out/rpc/%s/%s_service_impl2.go", outFilePath, k, k), buf.Bytes(), 0666)
